@@ -6,12 +6,75 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <style type="text/css">
+      body {
+        background-image: url('cropped-RM_page-header_background1-3.png');
+      }
+      ul li{
+        list-style: none;
+        margin: 15px 0;
+      }
+      .card{
+        display: flex;
+        justify-content: left;
+        align-items: center;
+      }
+
+      .card img{
+        border-radius: 50%;
+        height: 100px;
+      }
+
+      .card p{
+        color: green;
+        font-size: 1.5rem;
+        margin-left: 20px;
+        font-weight: bold;
+      }
+    </style>
   </head>
   <body>
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <div id="app"></div>
+    <div id="app">
+      <ricky-and-morty></ricky-and-morty>
+    </div>
     <!-- built files will be auto injected -->
   </body>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script>
+    Vue.component('ricky-and-morty',{
+      name: 'RickyAndMorty',
+      template: '<ul><li v-for="(el,index) in personajes" :key="index"><div class="card"><img :src=el.image /><p>{{el.name}}</p></div></li></ul>',
+      data() {
+        return {
+          title: 'value',
+          personajes : [
+            {
+              name : 'Rick Sanchez',
+              image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg'
+            },
+            {
+              name : 'Morty Smith',
+              image: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg'
+            }, 
+            {
+              name : 'Summer Smith',
+              image: 'https://rickandmortyapi.com/api/character/avatar/3.jpeg'
+            },
+            {
+              name : 'Beth Smith',
+              image: 'https://rickandmortyapi.com/api/character/avatar/4.jpeg'
+            },
+            {
+              name : 'Jerry Smith',
+              image: 'https://rickandmortyapi.com/api/character/avatar/5.jpeg'
+            },
+          ]
+        }
+      },
+    });
+    new Vue({ el:'#app' });
+  </script>
 </html>
